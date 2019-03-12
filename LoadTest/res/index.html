@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="hiThere">Hi there</h1>
+<script>
+    var a = document.getElementById("hiThere")
+
+a.innerText = "loaded";
+
+    var xhr = new XMLHttpRequest();
+    xhr.open(
+        'GET',
+        './client/client.js',
+        true
+    );
+    xhr.onreadystatechange = function() {
+
+        var sc = document.createElement('script');
+        sc.innerHTML = xhr.responseText;
+        document.head.appendChild(sc);
+        a.innerText = "status" + xhr.status + " readyState " + xhr.readyState;
+    };
+
+    xhr.send();
+</script>
+</body>
+</html>
